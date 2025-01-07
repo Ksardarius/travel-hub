@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "tBeOetN3BOQ=",
+  "success": true,
+  "projectFilePath": "/workspaces/cooking-hub/CookingHubApi/CookingHubApi.csproj",
+  "expectedPackageFiles": [
+    "/home/vscode/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0/microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "/home/vscode/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

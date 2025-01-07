@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "708R+FwKtr1pCIapKpPpCoPud6G6xPZCfMFmylOzgQU=",
+  "Source": "CookingHubApi",
+  "BasePath": "_content/CookingHubApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

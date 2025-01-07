@@ -10,5 +10,6 @@
             "password": "postgres",
             "database": "postgres"
         }
-    ]
+    ],
+    "dotnet.defaultSolution": "CookingHubApi.sln"
 }

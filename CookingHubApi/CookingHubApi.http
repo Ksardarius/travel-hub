@@ -1,0 +1,6 @@
+@CookingHubApi_HostAddress = http://localhost:5003
+
+GET {{CookingHubApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
