@@ -1,4 +1,4 @@
-namespace CookingHubApi;
+namespace Recipes.API;
 
 public class WeatherForecast
 {

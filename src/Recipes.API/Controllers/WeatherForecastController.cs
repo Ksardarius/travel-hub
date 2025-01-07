@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CookingHubApi.Controllers;
+namespace Recipes.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]

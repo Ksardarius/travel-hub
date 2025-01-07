@@ -11,5 +11,5 @@
             "database": "postgres"
         }
     ],
-    "dotnet.defaultSolution": "CookingHubApi.sln"
+    "dotnet.defaultSolution": "WebApplication1.sln"
 }
