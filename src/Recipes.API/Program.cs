@@ -14,7 +14,9 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// app.UsePathBase("/recipes-api");
+
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

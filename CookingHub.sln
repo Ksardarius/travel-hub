@@ -10,11 +10,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		README.md = README.md
 		docker-compose.yml = docker-compose.yml
+		.env = .env
+		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.API", "src\Recipes.API\Recipes.API.csproj", "{44B7B26B-5D91-43D5-B2E3-0B1560EEACB6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gateway", "gateway", "{966B1B0B-2AE0-4438-8741-1C5A05556095}"
+	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\Envoy\cookinghub\envoy.yaml = ApiGateways\Envoy\config\webshopping\envoy.yaml
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\WebApp\WebApp.esproj", "{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48}"
+Project("{09011E0D-2A76-494B-A453-9F7C60ACB0E0}") = "Recipes.API", "src\Recipes.API\Recipes.API.csproj", "{44B7B26B-5D91-43D5-B2E3-0B1560EEACB6}"
+EndProject
+Project("{09011E0D-2A76-494B-A453-9F7C60ACB0E0}") = "WebApp", "src\WebApp\WebApp.esproj", "{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

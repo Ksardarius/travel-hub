@@ -1,16 +1,50 @@
 version: "3.9"
 services:
- frontend-prod:
+  recipes-api:
+    #image: ${REGISTRY:-eshop}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Recipes.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${ESHOP_AZURE_CATALOG_DB:-Server=sqldata;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word}
+      - PicBaseUrl=${ESHOP_STORAGE_CATALOG_URL}
+      - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}
+      - AzureStorageAccountName=${ESHOP_AZURE_STORAGE_CATALOG_NAME}
+      - AzureStorageAccountKey=${ESHOP_AZURE_STORAGE_CATALOG_KEY}
+      - UseCustomizationData=True
+      - AzureServiceBusEnabled=False
+      - AzureStorageEnabled=False
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
+      - OrchestratorType=${ORCHESTRATOR_TYPE}
+      - GRPC_PORT=81
+      - PORT=80
+      - PATH_BASE=/recipes-api
+    ports:
+      - "5101:8080"
+      - "9101:81"
+  frontend-prod:
    build:
-     context: ./todowebapp
+     context: src/WebApp
      dockerfile: Dockerfile
      args:
        - VITE_APP_BACKEND_ADDRESS=https://localhost/api/prod
    container_name: frontend-prod
    restart: always
    ports:
-     - 3000:3000
+     - 3001:3001
    networks:
      - network
+
+  cookinghubapigw:
+    image: envoyproxy/envoy:v1.11.1
+    volumes:
+      - ./src/ApiGateways/Envoy/cookinghub:/etc/envoy
+    ports:
+    - "5202:80"
+    - "15202:8001"
+    
 networks:
  network:
