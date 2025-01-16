@@ -7,6 +7,10 @@ services:
       dockerfile: src/Recipes.API/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - BookStoreDatabase__ConnectionString=mongodb://admin:admin@host.docker.internal:27017
+      - BookStoreDatabase__DatabaseName=BookStore
+      - BookStoreDatabase__BooksCollectionName=Books
+
       - ConnectionString=${ESHOP_AZURE_CATALOG_DB:-Server=sqldata;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word}
       - PicBaseUrl=${ESHOP_STORAGE_CATALOG_URL}
       - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
