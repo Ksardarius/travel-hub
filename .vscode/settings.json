@@ -8,7 +8,7 @@
             "name": "local",
             "username": "postgres",
             "password": "postgres",
-            "database": "postgres"
+            "database": "recipes"
         }
     ],
     "dotnet.defaultSolution": "WebApplication1.sln"
