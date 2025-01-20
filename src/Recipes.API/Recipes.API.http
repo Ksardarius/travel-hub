@@ -14,3 +14,8 @@ GET {{RecipesAPI_HostAddress}}/api/books/678866ddc6afad13c38b4d52
 Accept: application/json
 
 ###
+
+GET {{RecipesAPI_HostAddress}}/recipes?pageIndex=0&pageSize=2
+Accept: application/problem+json
+
+###

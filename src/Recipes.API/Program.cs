@@ -1,5 +1,6 @@
 using BookStoreApi.Models;
 using BookStoreApi.Services;
+using cHub.Recipes.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,16 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddApplicationServices();
 
-builder.Services.AddControllers()
-    .AddJsonOptions(
-        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+// builder.Services.AddControllers()
+//     .AddJsonOptions(
+//         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
         
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddProblemDetails();
 
 // Add services to the container.
-builder.Services.Configure<BookStoreDatabaseSettings>(
-    builder.Configuration.GetSection("BookStoreDatabase"));
+// builder.Services.Configure<BookStoreDatabaseSettings>(
+//     builder.Configuration.GetSection("BookStoreDatabase"));
 
 builder.Services.AddSingleton<BooksService>();builder.Services.AddSingleton<BooksService>();
 
@@ -32,8 +34,9 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 
-app.UseAuthorization();
+// app.UseAuthorization();
 
-app.MapControllers();
+// app.MapControllers();
+app.MapRecipesApi();
 
 app.Run();
