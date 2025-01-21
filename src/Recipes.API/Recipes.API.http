@@ -1,18 +1,5 @@
 @RecipesAPI_HostAddress = http://localhost:5202/recipes-api
 
-GET {{RecipesAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
-
-GET {{RecipesAPI_HostAddress}}/api/books/
-Accept: application/json
-
-###
-
-GET {{RecipesAPI_HostAddress}}/api/books/678866ddc6afad13c38b4d52
-Accept: application/json
-
 ###
 
 GET {{RecipesAPI_HostAddress}}/recipes?pageIndex=0&pageSize=10
