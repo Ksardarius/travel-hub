@@ -37,6 +37,7 @@ if (app.Environment.IsDevelopment())
 // app.UseAuthorization();
 
 // app.MapControllers();
+app.UseStatusCodePages();
 app.MapRecipesApi();
 
 app.Run();
