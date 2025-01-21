@@ -20,6 +20,11 @@ Accept: application/problem+json
 
 ###
 
+GET {{RecipesAPI_HostAddress}}/recipes/2
+Accept: application/problem+json
+
+###
+
 POST {{RecipesAPI_HostAddress}}/recipes
 Accept: application/problem+json
 Content-Type: application/json
