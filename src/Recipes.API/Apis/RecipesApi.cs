@@ -16,6 +16,11 @@ public static class RecipesApi {
             .WithDescription("Get a paginated list of recipes")
             .WithTags("Items");
 
+        app.MapPost("/recipes", CreateItem)
+            .WithName("CreateItem")
+            .WithSummary("Create a recipe item")
+            .WithDescription("Create a new recipe");
+
         return app;
     }
 
@@ -39,5 +44,22 @@ public static class RecipesApi {
             .ToListAsync();
 
         return TypedResults.Ok(new PaginatedItems<Recipe>(pageIndex, pageSize, totalItems, itemsOnPage));
+    }
+
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
+    public static async Task<Created> CreateItem(
+        RecipeContext dbContext,
+        Recipe recipe)
+    {
+        var item = new Recipe
+        {
+            Id = recipe.Id,
+            Title = recipe.Title
+        };
+
+        dbContext.Recipes.Add(item);
+        await dbContext.SaveChangesAsync();
+
+        return TypedResults.Created($"/recipes/{item.Id}");
     }
 }

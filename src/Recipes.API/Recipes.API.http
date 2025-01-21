@@ -15,7 +15,18 @@ Accept: application/json
 
 ###
 
-GET {{RecipesAPI_HostAddress}}/recipes?pageIndex=0&pageSize=2
+GET {{RecipesAPI_HostAddress}}/recipes?pageIndex=0&pageSize=10
 Accept: application/problem+json
+
+###
+
+POST {{RecipesAPI_HostAddress}}/recipes
+Accept: application/problem+json
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "MyTitle"
+}
 
 ###
