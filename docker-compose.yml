@@ -11,6 +11,7 @@ services:
       - BookStoreDatabase__DatabaseName=BookStore
       - BookStoreDatabase__BooksCollectionName=recipes
       - ConnectionStrings__RecipeContext=Host=host.docker.internal;Port=5432;Database=recipes;Username=postgres;Password=postgres
+      - ConnectionStrings__RabbitMq=amqp://guest:guest@host.docker.internal:5672/
 
       - ConnectionString=${ESHOP_AZURE_CATALOG_DB:-Server=sqldata;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word}
       - PicBaseUrl=${ESHOP_STORAGE_CATALOG_URL}

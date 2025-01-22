@@ -43,6 +43,11 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
 
+  rabbit:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    network_mode: service:db
+
 volumes:
   postgres-data:
   mongodb-data:

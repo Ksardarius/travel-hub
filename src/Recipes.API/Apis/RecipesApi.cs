@@ -1,10 +1,12 @@
 
 using System.ComponentModel;
 using cHub.Recipes.API.Infrastructure;
+using cHub.Recipes.API.IntegrationEvents.Events;
 using cHub.Recipes.API.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Rebus.Bus;
 
 namespace cHub.Recipes.API;
 
@@ -78,6 +80,7 @@ public static class RecipesApi {
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
     public static async Task<Created> CreateItem(
         RecipeContext dbContext,
+        IBus bus,
         Recipe recipe)
     {
         var item = new Recipe
@@ -88,6 +91,8 @@ public static class RecipesApi {
 
         dbContext.Recipes.Add(item);
         await dbContext.SaveChangesAsync();
+
+        await bus.Send(new CreateNewRecipe(recipe.Id, recipe.Title));
 
         return TypedResults.Created($"/recipes/{item.Id}");
     }
