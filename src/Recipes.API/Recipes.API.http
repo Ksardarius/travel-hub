@@ -17,8 +17,8 @@ Accept: application/problem+json
 Content-Type: application/json
 
 {
-  "id": 8,
-  "title": "MyTitle"
+  "id": 11,
+  "title": "MyTitle2"
 }
 
 ###

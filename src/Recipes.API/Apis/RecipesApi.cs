@@ -92,7 +92,7 @@ public static class RecipesApi {
         dbContext.Recipes.Add(item);
         await dbContext.SaveChangesAsync();
 
-        await bus.Send(new CreateNewRecipe(recipe.Id, recipe.Title));
+        await bus.Publish(new CreateNewRecipe(recipe.Id, recipe.Title));
 
         return TypedResults.Created($"/recipes/{item.Id}");
     }
