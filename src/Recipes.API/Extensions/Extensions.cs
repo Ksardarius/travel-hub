@@ -30,10 +30,10 @@ public static class Extensions
                 t.UseRabbitMq(
                     builder.Configuration.GetConnectionString("RabbitMq"),
                     inputQueueName: "recipes-queue")
-                    ),
-                    onCreated: async (bus) => {
-                        await bus.Subscribe<CreateNewRecipe>();
-                    }
+                    )// ,
+                    // onCreated: async (bus) => {
+                    //     await bus.Subscribe<CreateNewRecipe>();
+                    // }
         );
 
         builder.Services.AddRebusHandler<CreateNewRecipeEventHandler>();
