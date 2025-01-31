@@ -1,25 +1,21 @@
 using BookStoreApi.Models;
 using BookStoreApi.Services;
 using cHub.Recipes.API;
+using cHub.Recipes.API.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.AddApplicationServices();
-
-// builder.Services.AddControllers()
-//     .AddJsonOptions(
-//         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
         
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-builder.Services.AddProblemDetails();
+// builder.Services.AddOpenApi();
+// builder.Services.AddProblemDetails();
 
-// Add services to the container.
-// builder.Services.Configure<BookStoreDatabaseSettings>(
-//     builder.Configuration.GetSection("BookStoreDatabase"));
 
+builder.Services.AddGrpc();
+builder.Services.AddGrpcReflection();
 builder.Services.AddSingleton<BooksService>();
 
 var app = builder.Build();
@@ -27,17 +23,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.MapGrpcReflectionService();
+    // app.MapOpenApi();
 }
 
-// app.UsePathBase("/recipes-api");
-
-// app.UseHttpsRedirection();
-
-// app.UseAuthorization();
-
-// app.MapControllers();
-app.UseStatusCodePages();
-app.MapRecipesApi();
+app.MapGrpcService<RecipesService>();
+// app.UseStatusCodePages();
+//app.MapRecipesApi();
 
 app.Run();

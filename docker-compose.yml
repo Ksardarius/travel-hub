@@ -53,6 +53,16 @@ services:
     - "5202:80"
     - "5203:443"
     - "15202:8001"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./src/ApiGateways/nginx/cookinghub/html:/usr/share/nginx/html
+      - ./src/ApiGateways/nginx/cookinghub/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./src/ApiGateways/nginx/cookinghub/errors.grpc_conf:/etc/nginx/conf.d/errors.grpc_conf
+      - ./cert:/etc/dev/cert
+    ports:
+    - 9999:80
     
 networks:
  network:

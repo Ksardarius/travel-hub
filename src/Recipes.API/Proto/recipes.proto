@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "cHub.Recipes.API.Grpc";
+
+package RecipesApi;
+
+service Recipes {
+    rpc GetAllRecipes(GetAllRecipesRequest) returns (GetAllRecipesResponse) {}
+}
+
+message GetAllRecipesRequest {
+    int32 page_size = 1;
+    int32 page_index = 2;
+}
+
+message GetAllRecipesResponse {
+    int32 page_index = 1;
+    int32 page_size = 2;
+    int32 count = 3;
+    repeated Recipe recipes = 4;
+}
+
+message Recipe {
+    int32 id = 1;
+    string title = 2;
+}
