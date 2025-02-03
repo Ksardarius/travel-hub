@@ -1,6 +1,7 @@
 using cHub.Recipes.API.Infrastructure;
 using cHub.Recipes.API.IntegrationEvents.EventHandling;
 using cHub.Recipes.API.IntegrationEvents.Events;
+using cHub.ServiceDefaults;
 using Microsoft.EntityFrameworkCore;
 using Rebus.Config;
 using Rebus.Routing.TypeBased;
@@ -26,6 +27,7 @@ public static class Extensions
             .Routing(r =>
                 r.TypeBased().MapAssemblyOf<Program>("recipes-queue")
             )
+            .Options(o => o.EnableDiagnosticSources())
             .Transport(t =>
                 t.UseRabbitMq(
                     builder.Configuration.GetConnectionString("RabbitMq"),

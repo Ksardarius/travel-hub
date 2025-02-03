@@ -60,7 +60,11 @@
 		15672,
 		5672,
 		5101 /* recipes API grpc */,
-		9999 /* nginx gw */
+		9999 /* nginx gw */,
+		3002 /* cooking app */,
+		4317, /* jaeger endpoint */
+		16686 /* jaeger ui */,
+		9090 /* prometheus ui */
 	]
 	// "portsAttributes": {
 	//		"5001": {

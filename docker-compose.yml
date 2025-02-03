@@ -30,7 +30,9 @@ services:
       - PATH_BASE=/recipes-api
     ports:
       - "5101:8080"
-      - "9101:81"
+      - "5102:8081"
+    networks:
+     - network
   frontend-prod:
    build:
      context: src/WebApp
@@ -41,6 +43,19 @@ services:
    restart: always
    ports:
      - 3001:3001
+   networks:
+     - network
+
+  cooking-app:
+   build:
+     context: src/CookingApp
+     dockerfile: Dockerfile
+     args:
+       - VITE_APP_BACKEND_ADDRESS=https://localhost/api/prod
+   container_name: cooking-app
+   restart: always
+   ports:
+     - 3002:3000
    networks:
      - network
 
@@ -63,6 +78,17 @@ services:
       - ./cert:/etc/dev/cert
     ports:
     - 9999:80
+    networks:
+    - network
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./cert/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - network
     
 networks:
  network:

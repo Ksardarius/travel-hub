@@ -48,6 +48,15 @@ services:
     restart: unless-stopped
     network_mode: service:db
 
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    restart: unless-stopped
+    network_mode: service:db
+
 volumes:
   postgres-data:
   mongodb-data:
+
+networks:
+  monitoring:
+    external: true

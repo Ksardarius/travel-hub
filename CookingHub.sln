@@ -23,6 +23,8 @@ Project("{09011E0D-2A76-494B-A453-9F7C60ACB0E0}") = "Recipes.API", "src\Recipes.
 EndProject
 Project("{09011E0D-2A76-494B-A453-9F7C60ACB0E0}") = "WebApp", "src\WebApp\WebApp.esproj", "{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cHub.ServiceDefaults", "src\cHub.ServiceDefaults\cHub.ServiceDefaults.csproj", "{3BEBF486-A437-436D-B019-1917049E1F08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,10 +46,15 @@ Global
 		{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3BEBF486-A437-436D-B019-1917049E1F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BEBF486-A437-436D-B019-1917049E1F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BEBF486-A437-436D-B019-1917049E1F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BEBF486-A437-436D-B019-1917049E1F08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{44B7B26B-5D91-43D5-B2E3-0B1560EEACB6} = {DEB87437-90C5-4A0D-B27E-ACBD3E8FFD0E}
 		{A0BEA3F4-0BBB-4608-8FE9-518F6EB69F48} = {DEB87437-90C5-4A0D-B27E-ACBD3E8FFD0E}
+		{3BEBF486-A437-436D-B019-1917049E1F08} = {DEB87437-90C5-4A0D-B27E-ACBD3E8FFD0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25728519-5F0F-4973-8A64-0A81EB4EA8D9}

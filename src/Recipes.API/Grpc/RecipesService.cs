@@ -1,14 +1,17 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using cHub.Recipes.API.Infrastructure;
+using cHub.Recipes.API.IntegrationEvents.Events;
 using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
+using Rebus.Bus;
 
 namespace cHub.Recipes.API.Grpc;
 
 public class RecipesService(
     RecipeContext dbContext,
-    ILogger<RecipesService> logger) : Recipes.RecipesBase
+    ILogger<RecipesService> logger,
+    IBus bus) : Recipes.RecipesBase
 {
     public async override Task<GetAllRecipesResponse> GetAllRecipes(GetAllRecipesRequest request, ServerCallContext context)
     {
@@ -38,6 +41,8 @@ public class RecipesService(
                 Title = item.Title
             });
         }
+
+        await bus.Publish(new CreateNewRecipe(itemsOnPage[0].Id, itemsOnPage[0].Title));
 
         return response;
     }

@@ -1,12 +1,11 @@
-using BookStoreApi.Models;
 using BookStoreApi.Services;
-using cHub.Recipes.API;
 using cHub.Recipes.API.Grpc;
+using cHub.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.AddServiceDefaults();
 builder.AddApplicationServices();
         
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -28,6 +27,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGrpcService<RecipesService>();
+
+app.MapPrometheusScrapingEndpoint();
 // app.UseStatusCodePages();
 //app.MapRecipesApi();
 
