@@ -59,15 +59,15 @@ services:
    networks:
      - network
 
-  cookinghubapigw:
-    image: envoyproxy/envoy:v1.11.1
-    volumes:
-      - ./src/ApiGateways/Envoy/cookinghub:/etc/envoy
-      - ./cert:/etc/dev/cert
-    ports:
-    - "5202:80"
-    - "5203:443"
-    - "15202:8001"
+  # cookinghubapigw:
+  #   image: envoyproxy/envoy:v1.11.1
+  #   volumes:
+  #     - ./src/ApiGateways/Envoy/cookinghub:/etc/envoy
+  #     - ./cert:/etc/dev/cert
+  #   ports:
+  #   - "5202:80"
+  #   - "5203:443"
+  #   - "15202:8001"
 
   nginx:
     image: nginx:latest
