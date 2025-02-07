@@ -1,5 +1,6 @@
-import type { MetaFunction } from "@remix-run/node";
-import {Card} from '@chub/shared'
+import { type MetaFunction } from "@remix-run/node";
+import {getAllRecipes} from '@chub/gateway-api'
+import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,19 +9,28 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  return await getAllRecipes();
+}
+
 export default function Index() {
+  const data = useLoaderData<typeof loader>()
+
   return (
     <div className="flex h-screen items-center justify-center">
+      {data.recipes.map(r => (
+        <div key={r.id}>{r.title}</div>
+      ))}
+
+
+
+
+
       <div className="flex flex-col items-center gap-16">
         <header className="flex flex-col items-center gap-9">
           <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
             Welcome to <span className="sr-only">Remix</span>
           </h1>
-          <Card
-image="https://images.unsplash.com/photo-1603178455924-ef33372953bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80"
-heading="A flower vase"
-price="$12.00"
-onClick={() => console.log('Added to basket')}>Buy item</Card>
           <div className="h-[144px] w-[434px]">
             <img
               src="/logo-light.png"

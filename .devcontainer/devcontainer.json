@@ -45,7 +45,8 @@
 				"mtxr.sqltools-driver-pg",
 				"mtxr.sqltools",
 				"mongodb.mongodb-vscode",
-				"humao.rest-client"
+				"humao.rest-client",
+				"bradlc.vscode-tailwindcss"
 			]
 		}
 	},

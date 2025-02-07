@@ -1,0 +1,35 @@
+{
+  "name": "@chub/gateway-api",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "generate": "sh codegen.sh",
+    "build": "tsup index.ts --format esm,cjs --onSuccess \"tsc\"",
+    "dev": "tsup index.ts --format esm,cjs --watch --dts --onSuccess \"tsc\"",
+    "lint": "TIMING=1 eslint src --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.2.3",
+    "long": "^5.2.4",
+    "nice-grpc": "^2.1.10",
+    "nice-grpc-common": "^2.0.2",
+    "protobufjs": "^7.4.0"
+  },
+  "devDependencies": {
+    "grpc-tools": "^1.12.4",
+    "ts-proto": "^2.6.1",
+    "tsup": "^8.3.6",
+    "typescript": "^5.1.6"
+  }
+}

@@ -53,6 +53,8 @@ services:
      args:
        - VITE_APP_BACKEND_ADDRESS=https://localhost/api/prod
    container_name: cooking-app
+   environment:
+     - API_URL=http://nginx:80
    restart: always
    ports:
      - 3002:3000
