@@ -1,3 +1,6 @@
+// used to enable preflight for storybook
+const usePreflight = !!process.env.PREFLIGHT
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -47,7 +50,7 @@ module.exports = {
     },
   },
   corePlugins: {
-    preflight: false,
+    preflight: usePreflight,
   },
   plugins: [require("tailwindcss-animate")],
 }

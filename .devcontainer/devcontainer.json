@@ -46,7 +46,8 @@
 				"mtxr.sqltools",
 				"mongodb.mongodb-vscode",
 				"humao.rest-client",
-				"bradlc.vscode-tailwindcss"
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode"
 			]
 		}
 	},
