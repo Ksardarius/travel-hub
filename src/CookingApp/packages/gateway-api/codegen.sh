@@ -2,7 +2,7 @@
 
 mkdir -p generated
 
-GENERATED_CODE_DIR=./generated
+GENERATED_CODE_DIR=./src/generated
 PROTO_DIR=../../../Recipes.API/Proto
 
 ./node_modules/.bin/grpc_tools_node_protoc \

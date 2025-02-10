@@ -10,9 +10,9 @@
   ],
   "scripts": {
     "generate": "sh codegen.sh",
-    "build": "tsup index.ts --format esm,cjs --onSuccess \"tsc\"",
+    "build": "tsup",
     "dev": "tsup index.ts --format esm,cjs --watch --dts --onSuccess \"tsc\"",
-    "lint": "TIMING=1 eslint src --fix",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint src",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "keywords": [],

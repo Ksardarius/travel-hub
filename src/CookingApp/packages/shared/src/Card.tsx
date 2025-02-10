@@ -1,8 +1,17 @@
 import * as React from 'react'
 
-export function Card(props: any) {
+interface CardProps {
+    image: string
+    description: string
+    price: number
+    heading: string
+    onClick: () => void
+    children: React.ReactNode
+}
+
+export const Card: React.FC<CardProps> = (props) => {
     return (
-        <div classname='item-wrapper'>
+        <div className='item-wrapper'>
             <img src={props.image} alt={props.description} />
             <h3>{props.heading}</h3>
             <span>{props.price}</span>
