@@ -1,6 +1,7 @@
 import { type MetaFunction } from "@remix-run/node";
 import {getAllRecipes} from '@chub/gateway-api'
 import { useLoaderData } from "@remix-run/react";
+import {Button} from "@chub/ui"
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,6 +19,7 @@ export default function Index() {
 
   return (
     <div className="flex h-screen items-center justify-center">
+      <Button variant="outlined">Button</Button>
       {data.recipes.map(r => (
         <div key={r.id}>{r.title}</div>
       ))}

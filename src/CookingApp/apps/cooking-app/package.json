@@ -13,6 +13,7 @@
   "dependencies": {
     "@chub/gateway-api": "workspace:^",
     "@chub/shared": "workspace:^",
+    "@chub/ui": "workspace:^",
     "@remix-run/node": "^2.15.3",
     "@remix-run/react": "^2.15.3",
     "@remix-run/serve": "^2.15.3",
