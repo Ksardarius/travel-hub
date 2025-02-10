@@ -19,7 +19,7 @@ export default function Index() {
 
   return (
     <div className="flex h-screen items-center justify-center">
-      <Button variant="outlined">Button</Button>
+      <Button variant="secondary" size="lg">Button</Button>
       {data.recipes.map(r => (
         <div key={r.id}>{r.title}</div>
       ))}

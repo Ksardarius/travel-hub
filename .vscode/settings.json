@@ -11,5 +11,9 @@
             "database": "recipes"
         }
     ],
-    "dotnet.defaultSolution": "WebApplication1.sln"
+    "dotnet.defaultSolution": "WebApplication1.sln",
+    "tailwindCSS.experimental.classRegex": [
+        ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["cx\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ]
 }
