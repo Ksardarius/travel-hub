@@ -5,335 +5,339 @@
 // source: recipes.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { type CallContext, type CallOptions } from "nice-grpc-common";
+import {BinaryReader, BinaryWriter} from '@bufbuild/protobuf/wire'
+import {type CallContext, type CallOptions} from 'nice-grpc-common'
 
-export const protobufPackage = "RecipesApi";
+export const protobufPackage = 'RecipesApi'
 
 export interface GetAllRecipesRequest {
-  pageSize: number;
-  pageIndex: number;
+    pageSize: number
+    pageIndex: number
 }
 
 export interface GetAllRecipesResponse {
-  pageIndex: number;
-  pageSize: number;
-  count: number;
-  recipes: Recipe[];
+    pageIndex: number
+    pageSize: number
+    count: number
+    recipes: Recipe[]
 }
 
 export interface Recipe {
-  id: number;
-  title: string;
+    id: number
+    title: string
 }
 
 function createBaseGetAllRecipesRequest(): GetAllRecipesRequest {
-  return { pageSize: 0, pageIndex: 0 };
+    return {pageSize: 0, pageIndex: 0}
 }
 
 export const GetAllRecipesRequest: MessageFns<GetAllRecipesRequest> = {
-  encode(message: GetAllRecipesRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.pageSize !== 0) {
-      writer.uint32(8).int32(message.pageSize);
-    }
-    if (message.pageIndex !== 0) {
-      writer.uint32(16).int32(message.pageIndex);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GetAllRecipesRequest {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetAllRecipesRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.pageSize = reader.int32();
-          continue;
+    encode(message: GetAllRecipesRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.pageSize !== 0) {
+            writer.uint32(8).int32(message.pageSize)
         }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.pageIndex = reader.int32();
-          continue;
+        if (message.pageIndex !== 0) {
+            writer.uint32(16).int32(message.pageIndex)
         }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
+        return writer
+    },
 
-  fromJSON(object: any): GetAllRecipesRequest {
-    return {
-      pageSize: isSet(object.pageSize) ? globalThis.Number(object.pageSize) : 0,
-      pageIndex: isSet(object.pageIndex) ? globalThis.Number(object.pageIndex) : 0,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GetAllRecipesRequest {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input)
+        let end = length === undefined ? reader.len : reader.pos + length
+        const message = createBaseGetAllRecipesRequest()
+        while (reader.pos < end) {
+            const tag = reader.uint32()
+            switch (tag >>> 3) {
+                case 1: {
+                    if (tag !== 8) {
+                        break
+                    }
 
-  toJSON(message: GetAllRecipesRequest): unknown {
-    const obj: any = {};
-    if (message.pageSize !== 0) {
-      obj.pageSize = Math.round(message.pageSize);
-    }
-    if (message.pageIndex !== 0) {
-      obj.pageIndex = Math.round(message.pageIndex);
-    }
-    return obj;
-  },
+                    message.pageSize = reader.int32()
+                    continue
+                }
+                case 2: {
+                    if (tag !== 16) {
+                        break
+                    }
 
-  create(base?: DeepPartial<GetAllRecipesRequest>): GetAllRecipesRequest {
-    return GetAllRecipesRequest.fromPartial(base ?? {});
-  },
-  fromPartial(object: DeepPartial<GetAllRecipesRequest>): GetAllRecipesRequest {
-    const message = createBaseGetAllRecipesRequest();
-    message.pageSize = object.pageSize ?? 0;
-    message.pageIndex = object.pageIndex ?? 0;
-    return message;
-  },
-};
+                    message.pageIndex = reader.int32()
+                    continue
+                }
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break
+            }
+            reader.skip(tag & 7)
+        }
+        return message
+    },
+
+    fromJSON(object: any): GetAllRecipesRequest {
+        return {
+            pageSize: isSet(object.pageSize) ? globalThis.Number(object.pageSize) : 0,
+            pageIndex: isSet(object.pageIndex) ? globalThis.Number(object.pageIndex) : 0
+        }
+    },
+
+    toJSON(message: GetAllRecipesRequest): unknown {
+        const obj: any = {}
+        if (message.pageSize !== 0) {
+            obj.pageSize = Math.round(message.pageSize)
+        }
+        if (message.pageIndex !== 0) {
+            obj.pageIndex = Math.round(message.pageIndex)
+        }
+        return obj
+    },
+
+    create(base?: DeepPartial<GetAllRecipesRequest>): GetAllRecipesRequest {
+        return GetAllRecipesRequest.fromPartial(base ?? {})
+    },
+    fromPartial(object: DeepPartial<GetAllRecipesRequest>): GetAllRecipesRequest {
+        const message = createBaseGetAllRecipesRequest()
+        message.pageSize = object.pageSize ?? 0
+        message.pageIndex = object.pageIndex ?? 0
+        return message
+    }
+}
 
 function createBaseGetAllRecipesResponse(): GetAllRecipesResponse {
-  return { pageIndex: 0, pageSize: 0, count: 0, recipes: [] };
+    return {pageIndex: 0, pageSize: 0, count: 0, recipes: []}
 }
 
 export const GetAllRecipesResponse: MessageFns<GetAllRecipesResponse> = {
-  encode(message: GetAllRecipesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.pageIndex !== 0) {
-      writer.uint32(8).int32(message.pageIndex);
-    }
-    if (message.pageSize !== 0) {
-      writer.uint32(16).int32(message.pageSize);
-    }
-    if (message.count !== 0) {
-      writer.uint32(24).int32(message.count);
-    }
-    for (const v of message.recipes) {
-      Recipe.encode(v!, writer.uint32(34).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GetAllRecipesResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetAllRecipesResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.pageIndex = reader.int32();
-          continue;
+    encode(message: GetAllRecipesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.pageIndex !== 0) {
+            writer.uint32(8).int32(message.pageIndex)
         }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.pageSize = reader.int32();
-          continue;
+        if (message.pageSize !== 0) {
+            writer.uint32(16).int32(message.pageSize)
         }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.count = reader.int32();
-          continue;
+        if (message.count !== 0) {
+            writer.uint32(24).int32(message.count)
         }
-        case 4: {
-          if (tag !== 34) {
-            break;
-          }
-
-          message.recipes.push(Recipe.decode(reader, reader.uint32()));
-          continue;
+        for (const v of message.recipes) {
+            Recipe.encode(v!, writer.uint32(34).fork()).join()
         }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
+        return writer
+    },
 
-  fromJSON(object: any): GetAllRecipesResponse {
-    return {
-      pageIndex: isSet(object.pageIndex) ? globalThis.Number(object.pageIndex) : 0,
-      pageSize: isSet(object.pageSize) ? globalThis.Number(object.pageSize) : 0,
-      count: isSet(object.count) ? globalThis.Number(object.count) : 0,
-      recipes: globalThis.Array.isArray(object?.recipes) ? object.recipes.map((e: any) => Recipe.fromJSON(e)) : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GetAllRecipesResponse {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input)
+        let end = length === undefined ? reader.len : reader.pos + length
+        const message = createBaseGetAllRecipesResponse()
+        while (reader.pos < end) {
+            const tag = reader.uint32()
+            switch (tag >>> 3) {
+                case 1: {
+                    if (tag !== 8) {
+                        break
+                    }
 
-  toJSON(message: GetAllRecipesResponse): unknown {
-    const obj: any = {};
-    if (message.pageIndex !== 0) {
-      obj.pageIndex = Math.round(message.pageIndex);
-    }
-    if (message.pageSize !== 0) {
-      obj.pageSize = Math.round(message.pageSize);
-    }
-    if (message.count !== 0) {
-      obj.count = Math.round(message.count);
-    }
-    if (message.recipes?.length) {
-      obj.recipes = message.recipes.map((e) => Recipe.toJSON(e));
-    }
-    return obj;
-  },
+                    message.pageIndex = reader.int32()
+                    continue
+                }
+                case 2: {
+                    if (tag !== 16) {
+                        break
+                    }
 
-  create(base?: DeepPartial<GetAllRecipesResponse>): GetAllRecipesResponse {
-    return GetAllRecipesResponse.fromPartial(base ?? {});
-  },
-  fromPartial(object: DeepPartial<GetAllRecipesResponse>): GetAllRecipesResponse {
-    const message = createBaseGetAllRecipesResponse();
-    message.pageIndex = object.pageIndex ?? 0;
-    message.pageSize = object.pageSize ?? 0;
-    message.count = object.count ?? 0;
-    message.recipes = object.recipes?.map((e) => Recipe.fromPartial(e)) || [];
-    return message;
-  },
-};
+                    message.pageSize = reader.int32()
+                    continue
+                }
+                case 3: {
+                    if (tag !== 24) {
+                        break
+                    }
+
+                    message.count = reader.int32()
+                    continue
+                }
+                case 4: {
+                    if (tag !== 34) {
+                        break
+                    }
+
+                    message.recipes.push(Recipe.decode(reader, reader.uint32()))
+                    continue
+                }
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break
+            }
+            reader.skip(tag & 7)
+        }
+        return message
+    },
+
+    fromJSON(object: any): GetAllRecipesResponse {
+        return {
+            pageIndex: isSet(object.pageIndex) ? globalThis.Number(object.pageIndex) : 0,
+            pageSize: isSet(object.pageSize) ? globalThis.Number(object.pageSize) : 0,
+            count: isSet(object.count) ? globalThis.Number(object.count) : 0,
+            recipes: globalThis.Array.isArray(object?.recipes) ? object.recipes.map((e: any) => Recipe.fromJSON(e)) : []
+        }
+    },
+
+    toJSON(message: GetAllRecipesResponse): unknown {
+        const obj: any = {}
+        if (message.pageIndex !== 0) {
+            obj.pageIndex = Math.round(message.pageIndex)
+        }
+        if (message.pageSize !== 0) {
+            obj.pageSize = Math.round(message.pageSize)
+        }
+        if (message.count !== 0) {
+            obj.count = Math.round(message.count)
+        }
+        if (message.recipes?.length) {
+            obj.recipes = message.recipes.map(e => Recipe.toJSON(e))
+        }
+        return obj
+    },
+
+    create(base?: DeepPartial<GetAllRecipesResponse>): GetAllRecipesResponse {
+        return GetAllRecipesResponse.fromPartial(base ?? {})
+    },
+    fromPartial(object: DeepPartial<GetAllRecipesResponse>): GetAllRecipesResponse {
+        const message = createBaseGetAllRecipesResponse()
+        message.pageIndex = object.pageIndex ?? 0
+        message.pageSize = object.pageSize ?? 0
+        message.count = object.count ?? 0
+        message.recipes = object.recipes?.map(e => Recipe.fromPartial(e)) || []
+        return message
+    }
+}
 
 function createBaseRecipe(): Recipe {
-  return { id: 0, title: "" };
+    return {id: 0, title: ''}
 }
 
 export const Recipe: MessageFns<Recipe> = {
-  encode(message: Recipe, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.id !== 0) {
-      writer.uint32(8).int32(message.id);
-    }
-    if (message.title !== "") {
-      writer.uint32(18).string(message.title);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Recipe {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRecipe();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.id = reader.int32();
-          continue;
+    encode(message: Recipe, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.id !== 0) {
+            writer.uint32(8).int32(message.id)
         }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.title = reader.string();
-          continue;
+        if (message.title !== '') {
+            writer.uint32(18).string(message.title)
         }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Recipe {
-    return {
-      id: isSet(object.id) ? globalThis.Number(object.id) : 0,
-      title: isSet(object.title) ? globalThis.String(object.title) : "",
-    };
-  },
-
-  toJSON(message: Recipe): unknown {
-    const obj: any = {};
-    if (message.id !== 0) {
-      obj.id = Math.round(message.id);
-    }
-    if (message.title !== "") {
-      obj.title = message.title;
-    }
-    return obj;
-  },
-
-  create(base?: DeepPartial<Recipe>): Recipe {
-    return Recipe.fromPartial(base ?? {});
-  },
-  fromPartial(object: DeepPartial<Recipe>): Recipe {
-    const message = createBaseRecipe();
-    message.id = object.id ?? 0;
-    message.title = object.title ?? "";
-    return message;
-  },
-};
-
-export type RecipesDefinition = typeof RecipesDefinition;
-export const RecipesDefinition = {
-  name: "Recipes",
-  fullName: "RecipesApi.Recipes",
-  methods: {
-    getAllRecipes: {
-      name: "GetAllRecipes",
-      requestType: GetAllRecipesRequest,
-      requestStream: false,
-      responseType: GetAllRecipesResponse,
-      responseStream: false,
-      options: {},
+        return writer
     },
-  },
-} as const;
+
+    decode(input: BinaryReader | Uint8Array, length?: number): Recipe {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input)
+        let end = length === undefined ? reader.len : reader.pos + length
+        const message = createBaseRecipe()
+        while (reader.pos < end) {
+            const tag = reader.uint32()
+            switch (tag >>> 3) {
+                case 1: {
+                    if (tag !== 8) {
+                        break
+                    }
+
+                    message.id = reader.int32()
+                    continue
+                }
+                case 2: {
+                    if (tag !== 18) {
+                        break
+                    }
+
+                    message.title = reader.string()
+                    continue
+                }
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break
+            }
+            reader.skip(tag & 7)
+        }
+        return message
+    },
+
+    fromJSON(object: any): Recipe {
+        return {
+            id: isSet(object.id) ? globalThis.Number(object.id) : 0,
+            title: isSet(object.title) ? globalThis.String(object.title) : ''
+        }
+    },
+
+    toJSON(message: Recipe): unknown {
+        const obj: any = {}
+        if (message.id !== 0) {
+            obj.id = Math.round(message.id)
+        }
+        if (message.title !== '') {
+            obj.title = message.title
+        }
+        return obj
+    },
+
+    create(base?: DeepPartial<Recipe>): Recipe {
+        return Recipe.fromPartial(base ?? {})
+    },
+    fromPartial(object: DeepPartial<Recipe>): Recipe {
+        const message = createBaseRecipe()
+        message.id = object.id ?? 0
+        message.title = object.title ?? ''
+        return message
+    }
+}
+
+export type RecipesDefinition = typeof RecipesDefinition
+export const RecipesDefinition = {
+    name: 'Recipes',
+    fullName: 'RecipesApi.Recipes',
+    methods: {
+        getAllRecipes: {
+            name: 'GetAllRecipes',
+            requestType: GetAllRecipesRequest,
+            requestStream: false,
+            responseType: GetAllRecipesResponse,
+            responseStream: false,
+            options: {}
+        }
+    }
+} as const
 
 export interface RecipesServiceImplementation<CallContextExt = {}> {
-  getAllRecipes(
-    request: GetAllRecipesRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<GetAllRecipesResponse>>;
+    getAllRecipes(
+        request: GetAllRecipesRequest,
+        context: CallContext & CallContextExt
+    ): Promise<DeepPartial<GetAllRecipesResponse>>
 }
 
 export interface RecipesClient<CallOptionsExt = {}> {
-  getAllRecipes(
-    request: DeepPartial<GetAllRecipesRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<GetAllRecipesResponse>;
+    getAllRecipes(
+        request: DeepPartial<GetAllRecipesRequest>,
+        options?: CallOptions & CallOptionsExt
+    ): Promise<GetAllRecipesResponse>
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+    ? T
+    : T extends globalThis.Array<infer U>
+      ? globalThis.Array<DeepPartial<U>>
+      : T extends ReadonlyArray<infer U>
+        ? ReadonlyArray<DeepPartial<U>>
+        : T extends {}
+          ? {[K in keyof T]?: DeepPartial<T[K]>}
+          : Partial<T>
 
 function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
+    return value !== null && value !== undefined
 }
 
 export interface MessageFns<T> {
-  encode(message: T, writer?: BinaryWriter): BinaryWriter;
-  decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create(base?: DeepPartial<T>): T;
-  fromPartial(object: DeepPartial<T>): T;
+    encode(message: T, writer?: BinaryWriter): BinaryWriter
+    decode(input: BinaryReader | Uint8Array, length?: number): T
+    fromJSON(object: any): T
+    toJSON(message: T): unknown
+    create(base?: DeepPartial<T>): T
+    fromPartial(object: DeepPartial<T>): T
 }
