@@ -4,13 +4,25 @@
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+          "types": "./dist/types/src/index.d.ts",
+          "import": "./dist/index.mjs"
+        },
+        "require": {
+          "types": "./dist/types/src/index.d.ts",
+          "require": "./dist/index.js"
+        }
+    }
+  },
   "files": [
     "dist/**"
   ],
   "scripts": {
     "generate": "sh codegen.sh",
-    "build": "tsup",
+    "build": "tsup --onSuccess \"tsc\"",
     "dev": "tsup index.ts --format esm,cjs --watch --dts --onSuccess \"tsc\"",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint src",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"

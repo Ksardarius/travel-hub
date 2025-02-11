@@ -4,16 +4,25 @@
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types/src/index.d.ts",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./css": "./dist/index.css"
+    ".": {
+      "import": {
+          "types": "./dist/types/src/index.d.ts",
+          "import": "./dist/index.mjs"
+        },
+        "require": {
+          "types": "./dist/types/src/index.d.ts",
+          "require": "./dist/index.js"
+        }
+    },
+    "./styles.css": "./dist/index.css"
   },
   "files": [
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup --onSuccess \"tsc\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint src",
     "storybook": "PREFLIGHT=true storybook dev -p 6006",
