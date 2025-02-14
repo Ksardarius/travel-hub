@@ -33,18 +33,6 @@ services:
       - "5102:8081"
     networks:
      - network
-  frontend-prod:
-   build:
-     context: src/WebApp
-     dockerfile: Dockerfile
-     args:
-       - VITE_APP_BACKEND_ADDRESS=https://localhost/api/prod
-   container_name: frontend-prod
-   restart: always
-   ports:
-     - 3001:3001
-   networks:
-     - network
 
   cooking-app:
    build:
@@ -83,14 +71,14 @@ services:
     networks:
     - network
 
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - 9090:9090
-    volumes:
-      - ./cert/prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - network
+  # prometheus:
+  #   image: prom/prometheus
+  #   ports:
+  #     - 9090:9090
+  #   volumes:
+  #     - ./cert/prometheus.yml:/etc/prometheus/prometheus.yml
+  #   networks:
+  #     - network
     
 networks:
  network:
