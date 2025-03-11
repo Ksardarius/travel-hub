@@ -1,36 +1,38 @@
 {
   "name": "@chub/ui",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/types/src/index.d.ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "import": {
-          "types": "./dist/types/src/index.d.ts",
-          "import": "./dist/index.mjs"
-        },
-        "require": {
-          "types": "./dist/types/src/index.d.ts",
-          "require": "./dist/index.js"
-        }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
     },
-    "./styles.css": "./dist/index.css"
+    "./dist/style.css": "./dist/style.css"
   },
-  "files": [
-    "dist/**"
-  ],
   "scripts": {
-    "build": "tsup --onSuccess \"tsc\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint src",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "storybook": "PREFLIGHT=true storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.0.1"
+  },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
     "@storybook/addon-essentials": "^8.5.3",
@@ -40,22 +42,23 @@
     "@storybook/react": "^8.5.3",
     "@storybook/react-vite": "^8.5.3",
     "@storybook/test": "^8.5.3",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "autoprefixer": "^10.4.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "storybook": "^8.5.3",
+    "@eslint/js": "^9.21.0",
+    "@types/node": "^22.13.1",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7",
-    "tsup": "^8.3.6",
-    "typescript": "^5.1.6"
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.1.2",
-    "@types/node": "^22.13.1",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.0.1"
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^5.1.0",
+    "vite-plugin-dts": "^4.5.3"
   }
 }

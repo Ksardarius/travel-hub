@@ -1,6 +1,7 @@
 {
-  "extends": "../../tsconfig.build.json",
-  "compilerOptions": {
-    "outDir": "./dist/types"
-  }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

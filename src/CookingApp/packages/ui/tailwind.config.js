@@ -4,7 +4,7 @@ const usePreflight = !!process.env.PREFLIGHT
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ['class'],
-    content: ['./src/**/*.tsx'],
+    content: ["./lib/**/*.{js,ts,jsx,tsx}",],
     theme: {
         extend: {
             colors: {
