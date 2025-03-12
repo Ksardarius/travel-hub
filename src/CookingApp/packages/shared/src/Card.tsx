@@ -9,7 +9,7 @@ interface CardProps {
     children: React.ReactNode
 }
 
-export const Card: React.FC<CardProps> = (props) => {
+export const Card: React.FC<CardProps> = props => {
     return (
         <div className='item-wrapper'>
             <img src={props.image} alt={props.description} />
