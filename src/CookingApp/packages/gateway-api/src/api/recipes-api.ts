@@ -24,3 +24,5 @@ export async function getAllRecipes() {
         pageSize: 5
     })
 }
+
+export {type Recipe} from '../generated/recipes'

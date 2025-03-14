@@ -1,7 +1,18 @@
 import {type MetaFunction} from '@remix-run/node'
-import {getAllRecipes} from '@chub/gateway-api'
+import {getAllRecipes, type Recipe} from '@chub/gateway-api'
 import {useLoaderData} from '@remix-run/react'
-import {Button} from '@chub/ui'
+import {Button, DataTable, type ColumnDef} from '@chub/ui'
+
+export const columns: ColumnDef<Recipe>[] = [
+    {
+        accessorKey: 'id',
+        header: 'Id'
+    },
+    {
+        accessorKey: 'title',
+        header: 'Title'
+    }
+]
 
 export const meta: MetaFunction = () => {
     return [{title: 'New Remix App'}, {name: 'description', content: 'Welcome to Remix!'}]
@@ -19,9 +30,9 @@ export default function Index() {
             <Button variant='secondary' size='lg'>
                 Button
             </Button>
-            {data.recipes.map(r => (
-                <div key={r.id}>{r.title}</div>
-            ))}
+            <div>
+                <DataTable columns={columns} data={data.recipes} />
+            </div>
 
             <div className='flex flex-col items-center gap-16'>
                 <header className='flex flex-col items-center gap-9'>
