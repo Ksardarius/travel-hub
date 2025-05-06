@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "Travel.Trips.API.Grpc";
+
+package TripsApi;
+
+service Trips {
+    rpc GetAllTrips(GetAllTripsRequest) returns (GetAllTripsResponse) {}
+    rpc CreateTrip(CreateTripRequest) returns (CreateTripResponse) {}
+}
+
+message GetAllTripsRequest {
+    int32 page_size = 1;
+    int32 page_index = 2;
+}
+
+message GetAllTripsResponse {
+    int32 page_index = 1;
+    int32 page_size = 2;
+    int32 count = 3;
+    repeated Trip trips = 4;
+}
+
+message Trip {
+    int32 id = 1;
+    string destination = 2;
+}
+
+message CreateTripRequest {
+    int32 id = 1;
+    string destination = 2;
+}
+
+message CreateTripResponse {
+    int32 status = 1;
+}

@@ -18,7 +18,7 @@ COPY "NuGet.config" "NuGet.config"
 RUN dotnet restore "TravelHub.sln"
 
 COPY . .
-WORKDIR /build/src/Recipes.API
+WORKDIR /build/src/Trips.API
 RUN dotnet publish -c Release -o /app
 
 FROM build AS publish
@@ -28,4 +28,4 @@ WORKDIR /app
 COPY --from=publish /app .
 #COPY --from=build /src/Services/Catalog/Catalog.API/Proto /app/Proto
 #COPY --from=build /src/Services/Catalog/Catalog.API/eshop.pfx .
-ENTRYPOINT ["dotnet", "Recipes.API.dll"]
+ENTRYPOINT ["dotnet", "Trips.API.dll"]

@@ -32,22 +32,57 @@ services:
       - "5101:8080"
       - "5102:8081"
     networks:
-     - network
+      - network
+
+  trips-api:
+    #image: ${REGISTRY:-eshop}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Trips.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - BookStoreDatabase__ConnectionString=mongodb://admin:admin@host.docker.internal:27017
+      - BookStoreDatabase__DatabaseName=BookStore
+      - BookStoreDatabase__BooksCollectionName=trips
+      - ConnectionStrings__RecipeContext=Host=host.docker.internal;Port=5432;Database=recipes;Username=postgres;Password=postgres
+      - ConnectionStrings__RabbitMq=amqp://guest:guest@host.docker.internal:5672/
+      - ConnectionStrings__TripsDb=mongodb://admin:admin@host.docker.internal:27017
+
+      - ConnectionString=${ESHOP_AZURE_CATALOG_DB:-Server=sqldata;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word}
+      - PicBaseUrl=${ESHOP_STORAGE_CATALOG_URL}
+      - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}
+      - AzureStorageAccountName=${ESHOP_AZURE_STORAGE_CATALOG_NAME}
+      - AzureStorageAccountKey=${ESHOP_AZURE_STORAGE_CATALOG_KEY}
+      - UseCustomizationData=True
+      - AzureServiceBusEnabled=False
+      - AzureStorageEnabled=False
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
+      - OrchestratorType=${ORCHESTRATOR_TYPE}
+      - GRPC_PORT=81
+      - PORT=80
+      - PATH_BASE=/recipes-api
+    ports:
+      - "5103:8080"
+      - "5104:8081"
+    networks:
+      - network
 
   cooking-app:
-   build:
-     context: src/CookingApp
-     dockerfile: Dockerfile
-     args:
-       - VITE_APP_BACKEND_ADDRESS=https://localhost/api/prod
-   container_name: cooking-app
-   environment:
-     - API_URL=http://nginx:80
-   restart: always
-   ports:
-     - 3002:3000
-   networks:
-     - network
+    build:
+      context: src/CookingApp
+      dockerfile: Dockerfile
+      args:
+        - VITE_APP_BACKEND_ADDRESS=https://localhost/api/prod
+    container_name: cooking-app
+    environment:
+      - API_URL=http://nginx:80
+    restart: always
+    ports:
+      - 3002:3000
+    networks:
+      - network
 
   # cookinghubapigw:
   #   image: envoyproxy/envoy:v1.11.1
@@ -67,9 +102,9 @@ services:
       - ./src/ApiGateways/nginx/cookinghub/errors.grpc_conf:/etc/nginx/conf.d/errors.grpc_conf
       - ./cert:/etc/dev/cert
     ports:
-    - 9999:80
+      - 9999:80
     networks:
-    - network
+      - network
 
   # prometheus:
   #   image: prom/prometheus
@@ -79,6 +114,6 @@ services:
   #     - ./cert/prometheus.yml:/etc/prometheus/prometheus.yml
   #   networks:
   #     - network
-    
+
 networks:
- network:
+  network:
