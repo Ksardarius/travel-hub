@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using cHub.Recipes.API.IntegrationEvents.Events;
 using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Rebus.Bus;
 using Travel.Trips.API.Infrastructure;
 
@@ -65,6 +66,25 @@ public class TripsService(
         await dbContext.SaveChangesAsync();
 
         return new CreateTripResponse
+        {
+            Status = 0
+        };
+    }
+
+    public override async Task<AddTripVariantResponse> AddTripVariant(AddTripVariantRequest request, ServerCallContext context)
+    {
+        var trip = await dbContext.Trips.FirstOrDefaultAsync(f => f.Id == request.TripId);
+        if (trip != null)
+        {
+            trip.Variants.Add(new Models.Trip.TripVariants
+            {
+                Name = request.Name
+            });
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        return new AddTripVariantResponse
         {
             Status = 0
         };

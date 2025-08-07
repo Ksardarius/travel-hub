@@ -7,6 +7,8 @@ package TripsApi;
 service Trips {
     rpc GetAllTrips(GetAllTripsRequest) returns (GetAllTripsResponse) {}
     rpc CreateTrip(CreateTripRequest) returns (CreateTripResponse) {}
+
+    rpc AddTripVariant(AddTripVariantRequest) returns (AddTripVariantResponse) {}
 }
 
 message GetAllTripsRequest {
@@ -32,5 +34,14 @@ message CreateTripRequest {
 }
 
 message CreateTripResponse {
+    int32 status = 1;
+}
+
+message AddTripVariantRequest {
+    int32 tripId = 1;
+    string name = 2;
+}
+
+message AddTripVariantResponse {
     int32 status = 1;
 }

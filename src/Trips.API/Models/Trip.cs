@@ -6,6 +6,13 @@ namespace Travel.Trips.API.Models;
 
 public class Trip
 {
+    public class TripVariants
+    {
+        [BsonElement("name")]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    }
+
     [BsonId]
     public ObjectId _id { get; set; }
 
@@ -16,4 +23,8 @@ public class Trip
     [BsonElement("destination")]
     [JsonPropertyName("destination")]
     public required string Destination { get; set; }
+
+    [BsonElement("variants")]
+    [JsonPropertyName("variants")]
+    public List<TripVariants> Variants { get; set; } = [];
 }
